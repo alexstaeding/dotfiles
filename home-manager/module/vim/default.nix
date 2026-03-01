@@ -30,6 +30,7 @@ in {
         bind-key -T copy-mode-vi 'C-\' select-pane -l
 
         setw -g mode-keys vi
+        set -g mouse on
 
         set-option -g set-clipboard external
         bind-key -T copy-mode-vi v send-keys -X begin-selection
