@@ -77,7 +77,7 @@
     sshfs
     icu
     discord
-    #vesktop
+    vesktop
     google-chrome
     feishin
     spotify
