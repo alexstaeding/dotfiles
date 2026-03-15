@@ -889,6 +889,15 @@ require('lze').load {
         vim.keymap.set("n", "<M-CR>", function()
           vim.lsp.buf.code_action()
         end, { desc = "Code action" })
+        vim.keymap.set("n", "<leader>mr", function()
+          vim.lsp.codelens.refresh()
+          vim.defer_fn(function() vim.lsp.codelens.run() end, 50)
+        end, { buffer = bufnr, desc = "Metals: run (code lens)" })
+
+        vim.keymap.set("n", "<leader>mR", function()
+          vim.lsp.codelens.refresh()
+          vim.defer_fn(function() vim.lsp.codelens.run() end, 50)
+        end, { buffer = bufnr, desc = "Metals: run/debug picker (code lens)" })
       end
 
       local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
