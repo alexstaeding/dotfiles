@@ -81,7 +81,6 @@
     google-chrome
     feishin
     spotify
-    neofetch
     obsidian
     zotero
     signal-desktop-bin
