@@ -83,7 +83,7 @@
     spotify
     obsidian
     zotero
-    signal-desktop-bin
+    signal-desktop
     prismlauncher
     git
     git-annex
