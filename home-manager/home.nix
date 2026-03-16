@@ -176,6 +176,10 @@
         source ~/.p10k.zsh
       '';
     };
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
     java = {
       enable = true;
       package = pkgs.jdk25;
