@@ -67,7 +67,6 @@ in
   environment.systemPackages = with pkgs; [
     kdiskmark
     wireshark
-    helvum
     linuxptp
     alsa-utils
     dive # look into docker image layers
