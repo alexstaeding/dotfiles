@@ -146,7 +146,6 @@
     # EDITOR = "emacs";
   };
 
-
   home.shellAliases = {
     idea = "idea-ultimate";
   };
@@ -188,6 +187,7 @@
       mutableExtensionsDir = false;
       profiles.default.extensions = with pkgs.vscode-extensions; [
         mkhl.direnv
+        mechatroner.rainbow-csv
         ms-vscode.cpptools-extension-pack
         ms-vscode.cmake-tools
         tamasfe.even-better-toml
