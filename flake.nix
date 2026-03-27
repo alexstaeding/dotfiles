@@ -21,6 +21,7 @@
       inputs.home-manager.follows = "home-manager";
     };
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
+    zed.url = "github:zed-industries/zed";
   };
 
   outputs =
@@ -32,6 +33,7 @@
       algotex,
       plasma-manager,
       nixCats,
+      zed,
       ...
     }@inputs:
     let
@@ -48,7 +50,10 @@
         system:
         import nixpkgs {
           inherit system;
-          overlays = [ (final: previous: { algotex = algotex.packages.${system}.default; }) ];
+          overlays = [
+            (final: previous: { algotex = algotex.packages.${system}.default; })
+            (final: previous: { zed-latest = zed.packages.${system}.default; })
+          ];
           config = {
             allowUnfree = true;
           };
