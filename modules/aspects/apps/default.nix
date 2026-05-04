@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, ... }:
 {
   flake.modules.homeManager.apps =
     { pkgs, ... }:
@@ -7,7 +7,6 @@
         with pkgs;
         [
           signal-desktop
-          # telegram-desktop
           teams-for-linux
           zoom-us
           spotify
@@ -29,6 +28,8 @@
           resilio-sync
           proton-pass
           gimp
+          kdiskmark
+          teamviewer
         ]
         ++ lib.optionals pkgs.stdenv.isDarwin [
           skimpdf
@@ -46,16 +47,11 @@
         vesktop.enable = true;
       };
     };
-  flake.modules.nixosConfigurations.apps =
-    { pkgs, ... }:
+  flake.modules.nixos.apps =
+    { ... }:
     {
-      environment.systemPackages = with pkgs; [
-        kdiskmark
-        wireshark
-      ];
       programs = {
         steam.enable = true;
-        teamviewer.enable = true;
       };
     };
 }
