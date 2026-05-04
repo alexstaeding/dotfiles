@@ -1,20 +1,23 @@
 { ... }:
 {
-  flake.modules.nixos.networking = {
-    networking.networkmanager.enable = true;
+  flake.modules.nixos.networking =
+    { pkgs, ... }:
+    {
+      networking.networkmanager.enable = true;
 
-    services.avahi = {
-      enable = true;
-      allowPointToPoint = true;
-      nssmdns4 = true;
-      publish = {
+      services.avahi = {
         enable = true;
-        userServices = true;
+        allowPointToPoint = true;
+        nssmdns4 = true;
+        publish = {
+          enable = true;
+          userServices = true;
+        };
+      };
+
+      services.mullvad-vpn = {
+        enable = true;
+        package = pkgs.mullvad-vpn;
       };
     };
-
-    services.mullvad-vpn = {
-      enable = true;
-    };
-  };
 }
