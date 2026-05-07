@@ -38,6 +38,7 @@ in
         vim
         development
         java
+        radicle
         devops
         crypto
         cli
