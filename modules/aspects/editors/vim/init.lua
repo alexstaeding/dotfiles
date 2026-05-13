@@ -423,6 +423,10 @@ require('lze').load {
     after = function(plugin)
       require('gitsigns').setup({
         -- See `:help gitsigns.txt`
+        current_line_blame = true,
+        current_line_blame_opts = {
+          delay = 0,
+        },
         signs = {
           add = { text = '+' },
           change = { text = '~' },
