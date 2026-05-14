@@ -19,5 +19,10 @@
         enable = true;
         package = pkgs.mullvad-vpn;
       };
+
+      environment.systemPackages = with pkgs; [
+        ethtool
+        nethogs
+      ];
     };
 }

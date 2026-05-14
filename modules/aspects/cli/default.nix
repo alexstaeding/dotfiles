@@ -57,7 +57,6 @@
           libyaml
         ]
         ++ lib.optionals pkgs.stdenv.isLinux [
-          ethtool
           powertop
           s-tui
         ]
