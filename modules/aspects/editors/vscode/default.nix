@@ -29,6 +29,7 @@
           donjayamanne.githistory
           eamodio.gitlens
           codezombiech.gitignore
+          foxundermoon.shell-format
         ] ++ (with pkgs; [
           # Not in nixpkgs
           vscode-gitstash
