@@ -29,6 +29,8 @@ in
         flakeConfig.flake.modules.nixos.locale
         flakeConfig.flake.modules.nixos.ssh
         flakeConfig.flake.modules.nixos.networking
+        flakeConfig.flake.modules.nixos.avahi
+        flakeConfig.flake.modules.nixos.vpn
         flakeConfig.flake.modules.nixos.apps
         flakeConfig.flake.modules.nixos.audio
         flakeConfig.flake.modules.nixos.desktop
