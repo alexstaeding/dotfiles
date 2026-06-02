@@ -9,6 +9,14 @@ let
   flakeConfig = config;
 in
 {
+  flake.modules.homeManager.ssh = {
+    programs.ssh.settings."nix-builder" = {
+      hostname = "130.82.172.104";
+      user = "alex";
+      identityFile = "~/.ssh/id_ed25519";
+    };
+  };
+
   flake.nixosConfigurations.nix-builder = withSystem "x86_64-linux" (
     { pkgs, ... }:
     inputs.nixpkgs.lib.nixosSystem {
