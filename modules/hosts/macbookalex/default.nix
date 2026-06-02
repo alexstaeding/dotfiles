@@ -33,6 +33,19 @@ in
 
           home-manager.users.alex.imports = [
             config.flake.modules.homeManager.alex
+
+            config.flake.modules.homeManager.nano
+            config.flake.modules.homeManager.vim
+            config.flake.modules.homeManager.vscode
+
+            config.flake.modules.homeManager.dev-base
+            config.flake.modules.homeManager.c
+            config.flake.modules.homeManager.java
+            config.flake.modules.homeManager.tex
+            config.flake.modules.homeManager.typst
+
+            config.flake.modules.homeManager.devops
+            config.flake.modules.homeManager.apps
           ];
         }
       ];

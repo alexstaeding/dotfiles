@@ -18,13 +18,13 @@ in
 
         ./_hardware.nix
 
-        flakeConfig.flake.modules.nixos.alex
         {
           users.users.alex.extraGroups = [
             "docker"
             "openrazer"
           ];
         }
+        flakeConfig.flake.modules.nixos.alex
         flakeConfig.flake.modules.nixos.nix
         flakeConfig.flake.modules.nixos.locale
         flakeConfig.flake.modules.nixos.ssh
@@ -76,6 +76,19 @@ in
             };
             home-manager.users.alex.imports = [
               flakeConfig.flake.modules.homeManager.alex
+
+              flakeConfig.flake.modules.homeManager.nano
+              flakeConfig.flake.modules.homeManager.vim
+              flakeConfig.flake.modules.homeManager.vscode
+
+              flakeConfig.flake.modules.homeManager.dev-base
+              flakeConfig.flake.modules.homeManager.c
+              flakeConfig.flake.modules.homeManager.java
+              flakeConfig.flake.modules.homeManager.tex
+              flakeConfig.flake.modules.homeManager.typst
+
+              flakeConfig.flake.modules.homeManager.devops
+              flakeConfig.flake.modules.homeManager.apps
               flakeConfig.flake.modules.homeManager.desktop
             ];
           }

@@ -13,6 +13,10 @@ in
           home = "/home/alex";
           isNormalUser = true;
           extraGroups = [ "wheel" ];
+          openssh.authorizedKeys.keys = [
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPQFj/m1DSh1SJ5BeVxqWqwgNWWoN9UOINQK3AGeQuAK alex@macbookpro"
+          ];
+          initialPassword = "password";
         };
       };
       programs.zsh.enable = true;
@@ -33,16 +37,8 @@ in
     {
       imports = with hm; [
         shell
-        vscode
-        nano
-        vim
-        development
-        java
-        radicle
-        devops
         crypto
         cli
-        apps
       ];
 
       home.username = "alex";
