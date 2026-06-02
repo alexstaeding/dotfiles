@@ -1,7 +1,7 @@
 { ... }:
 {
   flake.modules.homeManager.shell =
-    { pkgs, ... }:
+    { pkgs, lib, ... }:
     {
       programs = {
         zsh = {
@@ -18,8 +18,10 @@
           ];
           initContent = "source ~/.p10k.zsh";
           profileExtra = ''
-            # Homebrew: sets PATH, MANPATH, etc.
-            eval "$(/opt/homebrew/bin/brew shellenv)"
+            ${lib.optionalString pkgs.stdenv.isDarwin ''
+              # Homebrew: sets PATH, MANPATH, etc.
+              eval "$(/opt/homebrew/bin/brew shellenv)"
+            ''}
 
             # JetBrains Toolbox scripts
             export PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
