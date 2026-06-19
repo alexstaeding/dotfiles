@@ -33,6 +33,7 @@ in
 
           home-manager.users.alex.imports = [
             config.flake.modules.homeManager.alex
+            config.flake.modules.homeManager.ssh
 
             config.flake.modules.homeManager.nano
             config.flake.modules.homeManager.vim

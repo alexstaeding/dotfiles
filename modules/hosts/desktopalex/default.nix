@@ -78,6 +78,7 @@ in
             };
             home-manager.users.alex.imports = [
               flakeConfig.flake.modules.homeManager.alex
+              flakeConfig.flake.modules.homeManager.ssh
 
               flakeConfig.flake.modules.homeManager.nano
               flakeConfig.flake.modules.homeManager.vim

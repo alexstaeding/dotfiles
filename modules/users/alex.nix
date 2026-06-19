@@ -39,7 +39,6 @@ in
         shell
         crypto
         cli
-        ssh
       ];
 
       home.username = "alex";
