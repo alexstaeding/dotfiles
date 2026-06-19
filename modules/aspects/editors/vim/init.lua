@@ -416,23 +416,13 @@ require('lze').load {
     "gitsigns.nvim",
     enabled = nixCats('general') or false,
     event = "DeferredUIEnter",
-    -- cmd = { "" },
-    -- ft = "",
-    -- keys = "",
-    -- colorscheme = "",
     after = function(plugin)
       require('gitsigns').setup({
         -- See `:help gitsigns.txt`
+        signs_staged_enable = true,
         current_line_blame = true,
         current_line_blame_opts = {
           delay = 0,
-        },
-        signs = {
-          add = { text = '+' },
-          change = { text = '~' },
-          delete = { text = '_' },
-          topdelete = { text = '‾' },
-          changedelete = { text = '~' },
         },
         on_attach = function(bufnr)
           local gs = package.loaded.gitsigns
@@ -765,6 +755,15 @@ local function lsp_on_attach(_, bufnr)
   end, { desc = 'Format current buffer with LSP' })
 end
 
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    local bufnr = args.buf
+    lsp_on_attach(client, bufnr)
+  end
+})
+
 -- NOTE: Register a handler from lzextras. This one makes it so that
 -- you can set up lsps within lze specs,
 -- and trigger vim.lsp.enable and the rtp config collection only on the correct filetypes
@@ -787,11 +786,6 @@ require('lze').load {
     lsp = function(plugin)
       vim.lsp.config(plugin.name, plugin.lsp or {})
       vim.lsp.enable(plugin.name)
-    end,
-    before = function(_)
-      vim.lsp.config('*', {
-        on_attach = lsp_on_attach,
-      })
     end,
   },
   {
@@ -886,7 +880,6 @@ require('lze').load {
 
       metals_config.on_attach = function(client, bufnr)
         require("metals").setup_dap()
-        lsp_on_attach(client, bufnr)
         vim.keymap.set("n", "<C-A-o>", "<cmd>MetalsOrganizeImports<CR>", {
           desc = "Metals: organize imports",
         })
