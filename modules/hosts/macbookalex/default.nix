@@ -44,6 +44,7 @@ in
             config.flake.modules.homeManager.java
             config.flake.modules.homeManager.tex
             config.flake.modules.homeManager.typst
+            config.flake.modules.homeManager.lean
 
             config.flake.modules.homeManager.devops
             config.flake.modules.homeManager.apps
