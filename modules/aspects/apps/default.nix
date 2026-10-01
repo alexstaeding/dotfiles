@@ -7,20 +7,19 @@
         with pkgs;
         [
           signal-desktop
-          teams-for-linux
-          zoom-us
           spotify
           feishin
           ffmpeg
           qbittorrent
           prismlauncher
-          zotero
+          # zotero
           inkscape
           insomnia
           google-chrome
           vimgolf
         ]
-        ++ lib.optionals stdenv.isLinux [
+        ++ lib.optionals stdenv.hostPlatform.isLinux [
+          teams-for-linux
           mission-center
           obs-studio
           makemkv
@@ -31,7 +30,7 @@
           kdiskmark
           teamviewer
         ]
-        ++ lib.optionals pkgs.stdenv.isDarwin [
+        ++ lib.optionals stdenv.hostPlatform.isDarwin [
           skimpdf
           rectangle
         ];
@@ -45,7 +44,7 @@
         obsidian.enable = true;
         thunderbird.enable = true;
         vesktop.enable = true;
-        kitty.enable = true;
+        kitty.enable = pkgs.stdenv.hostPlatform.isLinux;
       };
     };
   flake.modules.nixos.apps =

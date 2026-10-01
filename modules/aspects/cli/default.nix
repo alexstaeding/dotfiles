@@ -30,7 +30,6 @@
 
           # Git
           git
-          git-annex
           git-quick-stats
           gh
 
