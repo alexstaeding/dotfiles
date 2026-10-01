@@ -7,6 +7,7 @@
         enable = true;
         mutableExtensionsDir = false;
         profiles.default.extensions = with pkgs.vscode-extensions; [
+          anthropic.claude-code
           mkhl.direnv
           mechatroner.rainbow-csv
           ms-vscode.cpptools-extension-pack
