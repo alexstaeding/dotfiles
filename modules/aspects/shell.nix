@@ -18,7 +18,7 @@
           ];
           initContent = "source ~/.p10k.zsh";
           profileExtra = ''
-            ${lib.optionalString pkgs.stdenv.isDarwin ''
+            ${lib.optionalString pkgs.stdenv.hostPlatform.isDarwin ''
               # Homebrew: sets PATH, MANPATH, etc.
               eval "$(/opt/homebrew/bin/brew shellenv)"
             ''}

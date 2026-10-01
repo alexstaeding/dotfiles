@@ -7,7 +7,7 @@
       services.gpg-agent = {
         enable = true;
         enableSshSupport = true;
-        pinentry.package = if pkgs.stdenv.isLinux then pkgs.pinentry-all else pkgs.pinentry_mac;
+        pinentry.package = if pkgs.stdenv.hostPlatform.isLinux then pkgs.pinentry-all else pkgs.pinentry_mac;
       };
     };
 }

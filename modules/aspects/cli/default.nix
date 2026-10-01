@@ -55,11 +55,11 @@
           ruby
           libyaml
         ]
-        ++ lib.optionals pkgs.stdenv.isLinux [
+        ++ lib.optionals stdenv.hostPlatform.isLinux [
           powertop
           s-tui
         ]
-        ++ lib.optionals pkgs.stdenv.isDarwin [
+        ++ lib.optionals stdenv.hostPlatform.isDarwin [
           iterm2
           macpm
         ];
