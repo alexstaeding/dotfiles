@@ -33,6 +33,7 @@
           foxundermoon.shell-format
         ] ++ (with pkgs; [
           # Not in nixpkgs
+          vscode-slint
           vscode-gitstash
           vscode-dafny
           vscode-smt-z3

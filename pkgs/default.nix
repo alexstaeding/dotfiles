@@ -1,5 +1,6 @@
-{ pkgs, inputs }:
+{ pkgs, ... }:
 {
+  vscode-slint = pkgs.callPackage ./vscode/extensions/Slint.slint { };
   vscode-gitstash = pkgs.callPackage ./vscode/extensions/arturock.gitstash { };
   vscode-dafny = pkgs.callPackage ./vscode/extensions/dafny-lang.ide-vscode { };
   vscode-smt-z3 = pkgs.callPackage ./vscode/extensions/Soaibuzzaman.smt-z3 { };
