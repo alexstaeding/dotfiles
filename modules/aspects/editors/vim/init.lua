@@ -863,6 +863,13 @@ require('lze').load {
     },
   },
   {
+    "slint_lsp",
+    enabled = nixCats("slint") or false,
+    lsp = {
+      filetypes = { "slint" },
+    },
+  },
+  {
     "scalameta/nvim-metals",
     ft = { "scala", "sbt", "java" },
     on_require = "metals",
