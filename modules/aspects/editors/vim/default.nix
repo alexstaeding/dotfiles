@@ -145,6 +145,10 @@ in
             slint = with pkgs; [
               slint-lsp
             ];
+            haskell = with pkgs; [
+              haskell-language-server
+              fourmolu
+            ];
           };
 
           # This is for plugins that will load at startup without using packadd:
@@ -262,6 +266,7 @@ in
               nix = true;
               scala = true;
               slint = true;
+              haskell = true;
               go = false;
             };
             # anything else to pass and grab in lua with `nixCats.extra`

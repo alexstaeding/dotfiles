@@ -555,6 +555,7 @@ require('lze').load {
           -- and configure them here
           lua = nixCats('lua') and { "stylua" } or nil,
           go = nixCats('go') and { "gofmt", "golint" } or nil,
+          haskell = (nixCats('haskell') or nixCats('general')) and { "fourmolu" } or nil,
           -- templ = { "templ" },
           -- Conform will run multiple formatters sequentially
           -- python = { "isort", "black" },
@@ -867,6 +868,13 @@ require('lze').load {
     enabled = nixCats("slint") or false,
     lsp = {
       filetypes = { "slint" },
+    },
+  },
+  {
+    "hls",
+    enabled = nixCats("haskell") or false,
+    lsp = {
+      filetypes = { "haskell", "lhaskell" },
     },
   },
   {
