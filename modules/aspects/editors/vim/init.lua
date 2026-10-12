@@ -542,6 +542,8 @@ require('lze').load {
   {
     "conform.nvim",
     enabled = nixCats('general') or false,
+    cmd = { "Format", "ConformInfo" },
+    on_require = { "conform" },
     keys = {
       { "<leader>FF", desc = "[F]ormat [F]ile" },
     },
@@ -564,13 +566,16 @@ require('lze').load {
         },
       })
 
-      vim.keymap.set({ "n", "v" }, "<leader>FF", function()
-        conform.format({
+      local format_fn = function(opts)
+        conform.format(vim.tbl_extend("force", {
           lsp_fallback = true,
           async = false,
-          timeout_ms = 1000,
-        })
-      end, { desc = "[F]ormat [F]ile" })
+          timeout_ms = 2000,
+        }, opts or {}))
+      end
+
+      vim.keymap.set({ "n", "v" }, "<leader>FF", function() format_fn() end, { desc = "[F]ormat [F]ile" })
+      vim.api.nvim_create_user_command("Format", function() format_fn() end, { desc = "Format current buffer with Conform or LSP" })
     end,
   },
   {
@@ -733,7 +738,9 @@ local function lsp_on_attach(_, bufnr)
     end, 'Goto Definition in vsplit')
     nmap('<leader>ds', Snacks.picker.lsp_symbols, '[D]ocument [S]ymbols')
     nmap('<leader>ws', Snacks.picker.lsp_workspace_symbols, '[W]orkspace [S]ymbols')
-    nmap('<C-A-l>', function() vim.lsp.buf.format({ async = true }) end, 'Format File')
+    nmap('<C-A-l>', function()
+      require('conform').format({ async = true, lsp_fallback = true })
+    end, 'Format File')
   end
 
   nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
@@ -749,11 +756,6 @@ local function lsp_on_attach(_, bufnr)
   nmap('<leader>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, '[W]orkspace [L]ist Folders')
-
-  -- Create a command `:Format` local to the LSP buffer
-  vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-    vim.lsp.buf.format()
-  end, { desc = 'Format current buffer with LSP' })
 end
 
 vim.api.nvim_create_autocmd("LspAttach", {
