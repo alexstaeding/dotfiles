@@ -17,6 +17,8 @@
           insomnia
           google-chrome
           vimgolf
+          antigravity-ide
+          antigravity-cli
         ]
         ++ lib.optionals stdenv.hostPlatform.isLinux [
           teams-for-linux
