@@ -33,6 +33,7 @@ in
 
         setw -g mode-keys vi
         set -g mouse on
+        set -g focus-events on
 
         set-option -g set-clipboard external
         bind-key -T copy-mode-vi v send-keys -X begin-selection

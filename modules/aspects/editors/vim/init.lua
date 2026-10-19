@@ -87,6 +87,32 @@ vim.o.splitright = true
 -- (optional) all horizontal splits go below
 vim.o.splitbelow = true
 
+-- [[ Auto save when switching focus away from a buffer ]]
+vim.o.autowriteall = true
+
+local auto_save_group = vim.api.nvim_create_augroup("AutoSave", { clear = true })
+vim.api.nvim_create_autocmd({ "FocusLost", "BufLeave" }, {
+  group = auto_save_group,
+  desc = "Auto save when switching focus away from a buffer",
+  callback = function(args)
+    local buf = args.buf
+    if not vim.api.nvim_buf_is_valid(buf) then
+      return
+    end
+
+    if
+      vim.bo[buf].buftype == ""
+      and vim.bo[buf].modified
+      and not vim.bo[buf].readonly
+      and vim.api.nvim_buf_get_name(buf) ~= ""
+    then
+      vim.api.nvim_buf_call(buf, function()
+        vim.cmd("silent! update")
+      end)
+    end
+  end,
+})
+
 vim.g.netrw_liststyle = 0
 vim.g.netrw_banner = 0
 -- [[ Basic Keymaps ]]
