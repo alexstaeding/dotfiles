@@ -23,6 +23,7 @@ in
           insomnia
           google-chrome
           vimgolf
+          antigravity-hub
           antigravity-ide
           antigravity-cli
         ]
