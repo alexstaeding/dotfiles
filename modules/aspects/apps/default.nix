@@ -1,8 +1,14 @@
-{ lib, ... }:
+{ lib, config, ... }:
+let
+  hm = config.flake.modules.homeManager;
+in
 {
   flake.modules.homeManager.apps =
     { pkgs, ... }:
     {
+      imports = [
+        hm.mpv
+      ];
       home.packages =
         with pkgs;
         [
@@ -42,7 +48,6 @@
           enable = true;
           # configPath = "${config.xdg.configHome}/mozilla/firefox";
         };
-        mpv.enable = true;
         obsidian.enable = true;
         thunderbird.enable = true;
         vesktop.enable = true;
