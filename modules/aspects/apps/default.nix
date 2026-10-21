@@ -52,7 +52,7 @@ in
         obsidian.enable = true;
         thunderbird.enable = true;
         vesktop.enable = true;
-        kitty.enable = pkgs.stdenv.hostPlatform.isLinux;
+        kitty.enable = true;
       };
     };
   flake.modules.nixos.apps =
