@@ -64,6 +64,19 @@ in {
         };
       };
     };
+
+    targets.darwin = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
+      copyApps.enable = true;
+      linkApps.enable = false;
+    };
+
+    # home.activation.cleanOldAppSymlinks = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin (
+    #   lib.hm.dag.entryBefore ["copyApps"] ''
+    #     if [ -L "$HOME/Applications/Home Manager Apps" ]; then
+    #       run rm -f "$HOME/Applications/Home Manager Apps"
+    #     fi
+    #   ''
+    # );
   };
   flake.modules.nixos.apps = {...}: {
     programs = {
