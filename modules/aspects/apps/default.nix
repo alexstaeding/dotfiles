@@ -61,6 +61,15 @@ in {
           macos_colorspace = "displayp3";
           "modify_font cell_width" = "95%";
           disable_ligatures = "always";
+          macos_option_as_alt = "both";
+        };
+        keybindings = {
+          "alt+left" = "send_text all \\x1bb";
+          "alt+right" = "send_text all \\x1bf";
+          "cmd+left" = "send_text all \\x01";
+          "cmd+right" = "send_text all \\x05";
+          "cmd+backspace" = "send_text all \\x15";
+          "alt+backspace" = "send_text all \\x1b\\x7f";
         };
       };
     };
