@@ -23,7 +23,6 @@ in {
         google-chrome
         vimgolf
         antigravity-hub
-        antigravity-ide
         antigravity-cli
       ]
       ++ lib.optionals stdenv.hostPlatform.isLinux [
