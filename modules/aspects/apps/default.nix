@@ -2,17 +2,14 @@
   lib,
   config,
   ...
-}:
-let
+}: let
   hm = config.flake.modules.homeManager;
-in
-{
-  flake.modules.homeManager.apps = { pkgs, ... }: {
+in {
+  flake.modules.homeManager.apps = {pkgs, ...}: {
     imports = [
       hm.mpv
     ];
-    home.packages =
-      with pkgs;
+    home.packages = with pkgs;
       [
         signal-desktop
         spotify
@@ -54,10 +51,21 @@ in
       obsidian.enable = true;
       thunderbird.enable = true;
       vesktop.enable = true;
-      kitty.enable = true;
+      kitty = {
+        enable = true;
+        font = {
+          name = "JetBrainsMono Nerd Font Mono";
+          size = 12;
+        };
+        settings = {
+          macos_colorspace = "displayp3";
+          "modify_font cell_width" = "95%";
+          disable_ligatures = "always";
+        };
+      };
     };
   };
-  flake.modules.nixos.apps = { ... }: {
+  flake.modules.nixos.apps = {...}: {
     programs = {
       steam.enable = true;
     };
