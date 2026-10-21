@@ -1,12 +1,10 @@
-{ ... }:
-{
-  flake.modules.homeManager.vscode =
-    { pkgs, ... }:
-    {
-      programs.vscode = {
-        enable = true;
-        mutableExtensionsDir = false;
-        profiles.default.extensions = with pkgs.vscode-extensions; [
+{...}: {
+  flake.modules.homeManager.vscode = {pkgs, ...}: {
+    programs.vscode = {
+      enable = true;
+      mutableExtensionsDir = false;
+      profiles.default.extensions = with pkgs.vscode-extensions;
+        [
           anthropic.claude-code
           mkhl.direnv
           mechatroner.rainbow-csv
@@ -31,7 +29,8 @@
           eamodio.gitlens
           codezombiech.gitignore
           foxundermoon.shell-format
-        ] ++ (with pkgs; [
+        ]
+        ++ (with pkgs; [
           # Not in nixpkgs
           vscode-slint
           vscode-gitstash
@@ -39,6 +38,6 @@
           vscode-smt-z3
           vscode-material-theme
         ]);
-      };
     };
+  };
 }

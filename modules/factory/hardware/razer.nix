@@ -1,5 +1,5 @@
-{ ... }: {
-  flake.factory.nixos.razer = users: { pkgs, ... }: {
+{...}: {
+  flake.factory.nixos.razer = users: {pkgs, ...}: {
     hardware.openrazer = {
       inherit users;
       enable = true;

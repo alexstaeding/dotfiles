@@ -1,12 +1,9 @@
-{ ... }:
-{
-  flake.modules.homeManager.lean =
-    { pkgs, ... }:
-    {
-      home = {
-        packages = with pkgs; [
-          elan
-        ];
-      };
+{...}: {
+  flake.modules.homeManager.lean = {pkgs, ...}: {
+    home = {
+      packages = with pkgs; [
+        elan
+      ];
     };
+  };
 }

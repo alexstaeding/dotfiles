@@ -1,14 +1,11 @@
-{ ... }:
-{
-  flake.modules.homeManager.c =
-    { pkgs, ... }:
-    {
-      home = {
-        packages = with pkgs; [
-          clang-tools
-          cmake
-          gnumake
-        ];
-      };
+{...}: {
+  flake.modules.homeManager.c = {pkgs, ...}: {
+    home = {
+      packages = with pkgs; [
+        clang-tools
+        cmake
+        gnumake
+      ];
     };
+  };
 }

@@ -1,5 +1,4 @@
-{ inputs }:
-final: prev:
+{inputs}: final: prev:
 import ../pkgs {
   pkgs = final;
   inherit inputs;
