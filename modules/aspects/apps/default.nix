@@ -23,7 +23,6 @@ in {
         google-chrome
         vimgolf
         antigravity-hub
-        antigravity-cli
       ]
       ++ lib.optionals stdenv.hostPlatform.isLinux [
         teams-for-linux
@@ -50,6 +49,8 @@ in {
       obsidian.enable = true;
       thunderbird.enable = true;
       vesktop.enable = true;
+      antigravity-cli.enable = true;
+      claude-code.enable = true;
       kitty = {
         enable = true;
         font = {
