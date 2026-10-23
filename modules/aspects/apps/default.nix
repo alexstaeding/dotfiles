@@ -22,7 +22,9 @@ in {
         insomnia
         google-chrome
         vimgolf
+        pympress
         antigravity-hub
+        proton-pass
       ]
       ++ lib.optionals stdenv.hostPlatform.isLinux [
         teams-for-linux
@@ -31,7 +33,6 @@ in {
         makemkv
         popsicle
         resilio-sync
-        proton-pass
         gimp
         kdiskmark
         teamviewer
@@ -39,6 +40,11 @@ in {
       ++ lib.optionals stdenv.hostPlatform.isDarwin [
         skimpdf
         rectangle
+        zoom-us
+        teams
+        whatsapp-for-mac
+        postman
+        jellyfin-desktop
       ];
     programs = {
       discord.enable = true;

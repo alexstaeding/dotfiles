@@ -28,6 +28,10 @@
         screen
         watch
 
+        # Media
+        mediainfo
+        mkvtoolnix-cli
+
         # Git
         git
         git-quick-stats
@@ -39,6 +43,8 @@
         iperf2
         ookla-speedtest
         sshfs
+        iftop
+        openvpn
 
         # Hardware (Linux)
         pciutils
@@ -50,9 +56,13 @@
         file
         killall
         fastfetch
+        pwgen
+        time
+        ghostscript
         coreutils-full
         gnumake
         ruby
+        chruby
         libyaml
       ]
       ++ lib.optionals stdenv.hostPlatform.isLinux [
