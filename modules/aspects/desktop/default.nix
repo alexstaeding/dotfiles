@@ -12,6 +12,16 @@
           lookAndFeel = "org.kde.breezedark.desktop";
         };
 
+        configFile."plasma-localerc" = {
+          Formats = {
+            LANG = "en_US.UTF-8";
+            LC_TIME = "de_CH.UTF-8";
+            LC_MEASUREMENT = "de_CH.UTF-8";
+            LC_PAPER = "de_CH.UTF-8";
+            LC_TELEPHONE = "de_CH.UTF-8";
+          };
+        };
+
         hotkeys.commands."launch-kitty" = {
           name = "Launch Kitty";
           key = "Meta+Return";
