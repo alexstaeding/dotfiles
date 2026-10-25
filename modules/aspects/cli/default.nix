@@ -45,6 +45,7 @@
         sshfs
         iftop
         openvpn
+        dig
 
         # Hardware (Linux)
         pciutils
