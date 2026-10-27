@@ -17,7 +17,7 @@ in {
         ffmpeg
         qbittorrent
         prismlauncher
-        # zotero
+        zotero
         inkscape
         insomnia
         google-chrome

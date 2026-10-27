@@ -9,7 +9,12 @@
     overlay = import ../overlays {inherit inputs;};
     pkgs' = import inputs.nixpkgs {
       inherit system;
-      config.allowUnfree = true;
+      config = {
+        allowUnfree = true;
+        permittedInsecurePackages = [
+          "firefox-esr-140-bin-unwrapped-140.17.0esr"
+        ];
+      };
       overlays = [overlay];
     };
   in {
