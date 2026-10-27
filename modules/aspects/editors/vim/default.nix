@@ -145,6 +145,9 @@ in {
               haskell-language-server
               fourmolu
             ];
+            rust = with pkgs; [
+              rust-analyzer
+            ];
           };
 
           # This is for plugins that will load at startup without using packadd:
@@ -165,6 +168,9 @@ in {
               lean-nvim
               plenary-nvim
               vimtex
+            ];
+            rust = with pkgs.vimPlugins; [
+              rustaceanvim
             ];
           };
 
@@ -266,6 +272,7 @@ in {
             slint = true;
             haskell = true;
             go = false;
+            rust = true;
           };
           # anything else to pass and grab in lua with `nixCats.extra`
           extra = {

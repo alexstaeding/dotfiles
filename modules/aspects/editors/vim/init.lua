@@ -598,7 +598,7 @@ require("lze").load({
         { "<leader>d_", hidden = true },
         { "<leader>g", group = "[g]it" },
         { "<leader>g_", hidden = true },
-        { "<leader>r", group = "[r]ename" },
+        { "<leader>r", group = "[r]ename / [r]ust" },
         { "<leader>r_", hidden = true },
         { "<leader>f", group = "[f]ind" },
         { "<leader>f_", hidden = true },
@@ -651,6 +651,7 @@ require("lze").load({
           lua = nixCats("lua") and { "stylua" } or nil,
           go = nixCats("go") and { "gofmt", "golint" } or nil,
           haskell = (nixCats("haskell") or nixCats("general")) and { "fourmolu" } or nil,
+          rust = nixCats("rust") and { "rustfmt" } or nil,
           -- templ = { "templ" },
           -- Conform will run multiple formatters sequentially
           -- python = { "isort", "black" },
@@ -864,6 +865,48 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
+if nixCats("rust") then
+  vim.g.rustaceanvim = {
+    tools = {
+      hover_actions = {
+        auto_focus = true,
+      },
+    },
+    server = {
+      on_attach = function(client, bufnr)
+        vim.keymap.set("n", "<leader>re", function()
+          vim.cmd.RustLsp("explainError")
+        end, { buffer = bufnr, desc = "Rust: [E]xplain Error" })
+        vim.keymap.set("n", "<leader>rd", function()
+          vim.cmd.RustLsp("renderDiagnostic")
+        end, { buffer = bufnr, desc = "Rust: Render [D]iagnostic" })
+        vim.keymap.set("n", "<leader>rr", function()
+          vim.cmd.RustLsp("runnables")
+        end, { buffer = bufnr, desc = "Rust: [R]unnables" })
+        vim.keymap.set("n", "<leader>rb", function()
+          vim.cmd.RustLsp("debuggables")
+        end, { buffer = bufnr, desc = "Rust: De[b]uggables" })
+        vim.keymap.set("n", "<leader>rp", function()
+          vim.cmd.RustLsp("parentModule")
+        end, { buffer = bufnr, desc = "Rust: [P]arent Module" })
+        vim.keymap.set("n", "<leader>ro", function()
+          vim.cmd.RustLsp("openCargo")
+        end, { buffer = bufnr, desc = "Rust: [O]pen Cargo.toml" })
+      end,
+      default_settings = {
+        ["rust-analyzer"] = {
+          cargo = {
+            allFeatures = true,
+          },
+          checkOnSave = {
+            command = "clippy",
+          },
+        },
+      },
+    },
+  }
+end
+
 -- NOTE: Register a handler from lzextras. This one makes it so that
 -- you can set up lsps within lze specs,
 -- and trigger vim.lsp.enable and the rtp config collection only on the correct filetypes
@@ -1069,5 +1112,10 @@ require("lze").load({
         end,
       })
     end,
+  },
+  {
+    "rustaceanvim",
+    enabled = nixCats("rust") or false,
+    ft = { "rust" },
   },
 })
