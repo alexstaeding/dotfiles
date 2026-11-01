@@ -1,27 +1,5 @@
 {
   "nodes": {
-    "algotex": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "tuda-logo": "tuda-logo"
-      },
-      "locked": {
-        "lastModified": 1743352246,
-        "narHash": "sha256-X77ByMWTNPNxuLkwaoOZlLX4rN7/BQpLYMUfDR6iRAE=",
-        "owner": "alexstaeding",
-        "repo": "AlgoTeX",
-        "rev": "b14ec99acb357f4663649671eb04bd1d349a07eb",
-        "type": "github"
-      },
-      "original": {
-        "owner": "alexstaeding",
-        "ref": "fix/flake",
-        "repo": "AlgoTeX",
-        "type": "github"
-      }
-    },
     "crane": {
       "locked": {
         "lastModified": 1769737823,
@@ -234,7 +212,6 @@
     },
     "root": {
       "inputs": {
-        "algotex": "algotex",
         "disko": "disko",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
@@ -265,18 +242,6 @@
         "owner": "oxalica",
         "repo": "rust-overlay",
         "type": "github"
-      }
-    },
-    "tuda-logo": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-F/1F1yQbDhyXKXqeWZFFVB/tLWoSuVSbEgFolQrrSoM=",
-        "type": "file",
-        "url": "https://upload.wikimedia.org/wikipedia/de/2/24/TU_Darmstadt_Logo.svg"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://upload.wikimedia.org/wikipedia/de/2/24/TU_Darmstadt_Logo.svg"
       }
     },
     "zed": {
