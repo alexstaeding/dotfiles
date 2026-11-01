@@ -2,11 +2,16 @@
   flake.modules.nixos.avahi = {pkgs, ...}: {
     services.avahi = {
       enable = true;
-      allowPointToPoint = true;
       nssmdns4 = true;
-      publish = {
-        enable = true;
-        userServices = true;
+      settings = {
+        server = {
+          allow-point-to-point = true;
+        };
+        publish = {
+          "disable-publishing" = false;
+          "disable-user-service-publishing" = false;
+          "publish-addresses" = true;
+        };
       };
     };
   };

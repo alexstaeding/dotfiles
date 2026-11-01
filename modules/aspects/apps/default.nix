@@ -5,7 +5,11 @@
 }: let
   hm = config.flake.modules.homeManager;
 in {
-  flake.modules.homeManager.apps = {pkgs, ...}: {
+  flake.modules.homeManager.apps = {
+    pkgs,
+    config,
+    ...
+  }: {
     imports = [
       hm.mpv
     ];
@@ -50,7 +54,7 @@ in {
       discord.enable = true;
       firefox = {
         enable = true;
-        # configPath = "${config.xdg.configHome}/mozilla/firefox";
+        configPath = "${config.xdg.configHome}/mozilla/firefox";
       };
       obsidian.enable = true;
       thunderbird.enable = true;
