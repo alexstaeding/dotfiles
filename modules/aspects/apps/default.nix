@@ -100,6 +100,10 @@ in {
   flake.modules.nixos.apps = {...}: {
     programs = {
       steam.enable = true;
+      gpu-screen-recorder = {
+        enable = true;
+        ui.enable = true;
+      };
     };
   };
 }
