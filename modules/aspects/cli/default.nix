@@ -36,6 +36,7 @@
         git
         git-quick-stats
         gh
+        jujutsu
 
         # Network
         nmap
