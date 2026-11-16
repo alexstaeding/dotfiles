@@ -8,6 +8,7 @@ in {
   flake.modules.homeManager.apps = {
     pkgs,
     config,
+    lib,
     ...
   }: {
     imports = [
@@ -88,6 +89,37 @@ in {
       copyApps.enable = true;
       linkApps.enable = false;
     };
+
+    home.activation.zoteroDisableUpdates = let
+      policiesJson = pkgs.writeText "zotero-policies.json" (builtins.toJSON {
+        policies = {
+          DisableAppUpdate = true;
+        };
+      });
+    in
+      lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        # Clean any pending/stuck update state that causes Zotero to exit on startup
+        rm -rf "$HOME/Library/Caches/Zotero/updates" "$HOME/.cache/zotero/updates"
+
+        for zotero_dir in \
+          "$HOME/Library/Application Support/Zotero/Profiles" \
+          "$HOME/.zotero/zotero"; do
+          if [ -d "$zotero_dir" ]; then
+            for profile in "$zotero_dir"/*; do
+              if [ -d "$profile" ]; then
+                cat << 'EOF' > "$profile/user.js"
+// Managed by Home Manager - disable self-updates for Nix-managed package
+user_pref("app.update.auto", false);
+user_pref("app.update.enabled", false);
+user_pref("app.update.url", "");
+user_pref("app.update.serviceURL", "");
+user_pref("browser.policies.alternatePath", "${policiesJson}");
+EOF
+              fi
+            done
+          fi
+        done
+      '';
 
     # home.activation.cleanOldAppSymlinks = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin (
     #   lib.hm.dag.entryBefore ["copyApps"] ''
