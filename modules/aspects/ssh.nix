@@ -6,7 +6,6 @@
       settings = {
         PasswordAuthentication = false;
         AllowedUsers = null;
-        UseDns = true;
       };
     };
   };
